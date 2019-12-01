@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
+@Entity(name = "Rola")
 @Table(name = "rola")
 @Getter
 @Setter
@@ -17,10 +17,10 @@ public class Rola {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rola")
-    private Long id;
+    private Long idRola;
 
     @Column(name = "nazwa")
-    private String name;
+    private String nazwa;
 
     @ManyToMany(mappedBy = "roles")
     private Set<Uzytkownik> users;
