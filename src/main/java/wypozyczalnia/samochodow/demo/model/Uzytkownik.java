@@ -32,11 +32,12 @@ public class Uzytkownik {
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "uzytkownik_rola", joinColumns = {
-            @JoinColumn(name = "id_uzytkownik") },
-            inverseJoinColumns = { @JoinColumn(name = "id_rola")})
-    @JsonIgnore
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name = "uzytkownik_rola", joinColumns = {
+//            @JoinColumn(name = "id_uzytkownik") },
+//            inverseJoinColumns = { @JoinColumn(name = "id_rola")})
+//    @JsonIgnore
+    @ManyToMany(mappedBy = "users")
     private Set<Rola> roles;
 
     public Uzytkownik(){}

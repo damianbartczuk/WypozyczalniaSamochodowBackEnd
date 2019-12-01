@@ -1,6 +1,7 @@
 package wypozyczalnia.samochodow.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,7 +23,14 @@ public class Rola {
     @Column(name = "nazwa")
     private String nazwa;
 
-    @ManyToMany(mappedBy = "roles")
+//    @ManyToMany(mappedBy = "roles")
+
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "uzytkownik_rola", joinColumns = {
+            @JoinColumn(name = "id_rola") },
+            inverseJoinColumns = { @JoinColumn(name = "id_uzytkownik")})
+    @JsonIgnore
     private Set<Uzytkownik> users;
 
     public Rola(){}
