@@ -20,13 +20,13 @@ public class SamochodController {
     private SamochodRepository samochodRepository;
 
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "hello";
     }
 
     @PostMapping(value = "zapisz_samochod")
     @Transactional
-    public Samochod zapiszSamochod(@RequestBody Samochod samochod) {
+    public Samochod zapiszSamochod(@PathVariable Samochod samochod) {
         log.info("zapis samochodu");
 
         Samochod s = Samochod.builder()
@@ -41,7 +41,7 @@ public class SamochodController {
         return this.samochodRepository.save(s);
     }
 
-    @GetMapping( value = "pobierz_samochody")
+    @GetMapping(value = "pobierz_samochody")
     public List<Samochod> pobierzSamochody() {
         log.info("Trafiles po odczyt samochodow");
         return this.samochodRepository.findAll();
