@@ -1,0 +1,63 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Damian (generated)" id="1576368377659-1">
+        <createTable tableName="rola">
+            <column autoIncrement="true" name="id_rola" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="rola_pk"/>
+            </column>
+            <column name="nazwa" type="VARCHAR(30)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Damian (generated)" id="1576368377659-2">
+        <createTable tableName="samochod">
+            <column autoIncrement="true" name="id_samochod" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="samochod_pkey"/>
+            </column>
+            <column name="marka" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="logo" type="VARCHAR(355)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opis" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cena_za_dobe" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="czy_wypozyczony" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Damian (generated)" id="1576368377659-3">
+        <createTable tableName="uzytkownik">
+            <column autoIncrement="true" name="id_uzytkownik" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="uzytkownik_pk"/>
+            </column>
+            <column name="imie" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nazwisko" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nazwa_uzytkownika" type="VARCHAR(30)"/>
+            <column name="haslo" type="VARCHAR(30)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Damian (generated)" id="1576368377659-4">
+        <createTable tableName="uzytkownik_rola">
+            <column name="id_uzytkownik_rola" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="uzytkownik_rola_pkey"/>
+            </column>
+            <column name="id_uzytkownik" type="INTEGER"/>
+            <column name="id_rola" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Damian (generated)" id="1576368377659-5">
+        <addUniqueConstraint columnNames="logo" constraintName="samochod_logo_key" tableName="samochod"/>
+    </changeSet>
+</databaseChangeLog>
