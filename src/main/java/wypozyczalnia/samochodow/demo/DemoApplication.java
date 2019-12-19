@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import javax.sql.DataSource;
+
 @SpringBootApplication
 public class DemoApplication {
 
@@ -13,10 +15,10 @@ public class DemoApplication {
 	}
 
 	@Bean
-	public SpringLiquibase liquibase() {
+	public SpringLiquibase liquibase(DataSource datasource) {
 		SpringLiquibase liquibase = new SpringLiquibase();
-		liquibase.setChangeLog("classpath:liquibase-changeLog.xml");
-//		liquibase.setDataSource();
+		liquibase.setChangeLog("classpath:liquibase-ChangeLog.xml");
+		liquibase.setDataSource(datasource);
 		return liquibase;
 	}
 
