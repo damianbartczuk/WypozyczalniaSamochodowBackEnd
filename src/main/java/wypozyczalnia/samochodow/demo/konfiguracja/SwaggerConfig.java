@@ -1,7 +1,6 @@
 package wypozyczalnia.samochodow.demo.konfiguracja;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -17,18 +16,17 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Arrays;
 import java.util.List;
 
-@Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 
     @Bean
-    public Docket SwaggerApi() {
+    public Docket swaggerApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("damianbartczuk-apiWypozyczalniaSamochodow")
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(value -> value.matches("/api.*") || value.matches("/test.*"))
+                .paths(value -> value != null && (value.matches("/api.*") || value.matches("/test.*")))
                 .build()
                 .globalResponseMessage(RequestMethod.GET,getListOfResponseMessages());
     }
