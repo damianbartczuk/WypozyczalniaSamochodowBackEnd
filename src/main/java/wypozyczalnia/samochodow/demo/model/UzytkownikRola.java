@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-public class UzytkownikRola {
+public class UzytkownikRola implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +29,7 @@ public class UzytkownikRola {
     @Column(name = "id_rola")
     private String idRola;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany( fetch = FetchType.LAZY, mappedBy = "roles")
     private Set<Uzytkownik> users = new HashSet<>();
 
     public UzytkownikRola(){}
