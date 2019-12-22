@@ -32,6 +32,8 @@ public class UzytkownikRola implements Serializable {
     @ManyToMany( fetch = FetchType.LAZY, mappedBy = "roles")
     private Set<Uzytkownik> users = new HashSet<>();
 
-    public UzytkownikRola(){}
+    public UzytkownikRola() {
+//        konstruktor na potrzeby hibernate
+    }
 
 }

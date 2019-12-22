@@ -33,5 +33,7 @@ public class Rola implements Serializable {
     @JsonIgnore
     private Set<Uzytkownik> users;
 
-    public Rola(){}
+    public Rola() {
+//        konstruktor na potrzeby hibernate
+    }
 }

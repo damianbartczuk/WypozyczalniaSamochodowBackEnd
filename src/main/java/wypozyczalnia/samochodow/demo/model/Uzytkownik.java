@@ -39,5 +39,7 @@ public class Uzytkownik implements Serializable {
     @ManyToMany(mappedBy = "users")
     private Set<Rola> roles;
 
-    public Uzytkownik(){}
+    public Uzytkownik() {
+//        konstruktor na potrzeby hibernate
+    }
 }

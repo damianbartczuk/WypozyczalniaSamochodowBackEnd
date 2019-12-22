@@ -46,7 +46,9 @@ public class Samochod implements Serializable {
     @Column(name = "czy_wypozyczony")
     private boolean czyWypozyczony;
 
-    public Samochod(){}
+    public Samochod() {
+        // konstruktor na potrzeby hibernate
+    }
 
 
 }
