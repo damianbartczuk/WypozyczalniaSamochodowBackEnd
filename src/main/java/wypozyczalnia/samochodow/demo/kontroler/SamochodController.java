@@ -3,10 +3,12 @@ package wypozyczalnia.samochodow.demo.kontroler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import wypozyczalnia.samochodow.demo.model.Samochod;
-import wypozyczalnia.samochodow.demo.repozytorium.SamochodRepository;
+import wypozyczalnia.samochodow.demo.serwisy.SamochodService;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class SamochodController {
 
 
     @Autowired
-    private SamochodRepository samochodRepository;
+    private SamochodService samochodService;
 
     @GetMapping("/hello")
     public String hello() {
@@ -26,24 +28,13 @@ public class SamochodController {
 
     @PostMapping(value = "zapisz_samochod")
     @Transactional
-    public Samochod zapiszSamochod(@PathVariable Samochod samochod) {
-        log.info("zapis samochodu");
-
-        Samochod s = Samochod.builder()
-                .marka(samochod.getMarka())
-                .model(samochod.getModel())
-                .opis(samochod.getOpis())
-                .cenaZaDobe(samochod.getCenaZaDobe())
-                .logo(samochod.getLogo())
-                .czyWypozyczony(samochod.isCzyWypozyczony())
-                .build();
-        log.info(s.toString());
-        return this.samochodRepository.save(s);
+    public ResponseEntity<Samochod> zapiszSamochod(@PathVariable Samochod samochod) {
+        return new ResponseEntity<>(this.samochodService.zapiszSamochod(samochod), HttpStatus.OK);
     }
 
     @GetMapping(value = "pobierz_samochody")
-    public List<Samochod> pobierzSamochody() {
+    public ResponseEntity<List<Samochod>> pobierzSamochody() {
         log.info("Trafiles po odczyt samochodow");
-        return this.samochodRepository.findAll();
+        return new ResponseEntity<>(this.samochodService.odczytSamochodow(), HttpStatus.OK);
     }
 }
