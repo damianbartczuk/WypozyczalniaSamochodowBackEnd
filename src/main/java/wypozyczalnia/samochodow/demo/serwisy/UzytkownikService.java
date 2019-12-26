@@ -21,8 +21,20 @@ public class UzytkownikService {
     private UzytkownikRepository uzytkownikRepository;
 
     public List<Uzytkownik> odczytUzytkownikow(){
+        log.info("Odczytujemy uzytkownikow w serwisie posortowanych po nazwie uzytkownikow");
         return this.uzytkownikRepository.findAll(Sort.by(Sort.Direction.ASC, "username"));
     }
+
+    public Uzytkownik pobierzUzytkownika(String username, String password) {
+        log.info("Odeczytujemy uzytkownika z username = {} oraz password = {}", username, password);
+        return this.uzytkownikRepository.findByUsernameAndPassword(username, password);
+    }
+
+    public Uzytkownik pobierzUzytkownika(String username) {
+        log.info("Odeczytujemy uzytkownika z username = {}", username);
+        return this.uzytkownikRepository.findByUsername(username);
+    }
+
     public Uzytkownik zapiszUzytkownika(Uzytkownik uzytkownik) {
         log.info("Trafiles pod zapis uzytkownika {}", uzytkownik);
         uzytkownik.setPassword(bCryptPasswordEncoder().encode(uzytkownik.getPassword()));

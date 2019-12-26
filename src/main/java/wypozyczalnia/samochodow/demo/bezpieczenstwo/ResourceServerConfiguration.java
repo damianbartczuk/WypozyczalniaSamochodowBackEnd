@@ -17,9 +17,20 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         resources.resourceId(RESOURCE_ID);
     }
 
+    /**
+     * Metoda weryfikujaca entpointy do weryfikacji wymagania autoryzacji
+     * @param http
+     * @throws Exception
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**").authorizeRequests().anyRequest().authenticated();
+        http
+                .antMatcher("/pobierz_samochody")
+                .antMatcher("/pobierz_role")
+                .antMatcher("/pobierz_uzytkownikow")
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated();
     }
 
 }

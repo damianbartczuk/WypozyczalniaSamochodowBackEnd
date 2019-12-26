@@ -23,14 +23,16 @@ public class UzytkownikController {
     private UzytkownikService uzytkownikService;
 
     @ApiOperation(value = "Pobiera informacje na temat użytkowników")
-    @GetMapping("pobierz_uzytkownikow")
+    @GetMapping( value = "pobierz_uzytkownikow")
     public ResponseEntity<List<Uzytkownik>> pobierzUzytkownikow() {
+        log.info("Pobranie uzytkownikow");
         return new ResponseEntity<>(this.uzytkownikService.odczytUzytkownikow(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Zapisuje użytkownika, kodowanie hasła jest na poziomie kontrolera")
-    @PostMapping("zapisz_uzytkownika")
+    @PostMapping( value = "zapisz_uzytkownika")
     public ResponseEntity<Uzytkownik> zapiszUzytkownika(@PathVariable Uzytkownik uzytkownik) {
+        log.info("Zapis uzytkownika = " + uzytkownik);
         return new ResponseEntity<>(this.uzytkownikService.zapiszUzytkownika(uzytkownik), HttpStatus.OK);
     }
 }
