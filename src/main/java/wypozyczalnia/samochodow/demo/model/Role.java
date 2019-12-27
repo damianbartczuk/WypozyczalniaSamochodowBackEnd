@@ -14,7 +14,7 @@ import java.util.Set;
 @Builder
 @ToString
 @AllArgsConstructor
-public class Rola {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rola")
@@ -31,7 +31,7 @@ public class Rola {
             @JoinColumn(name = "id_rola") },
             inverseJoinColumns = { @JoinColumn(name = "id_uzytkownik")})
     @JsonIgnore
-    private Set<Uzytkownik> users;
+    private Set<User> users;
 
-    public Rola(){}
+    public Role(){}
 }

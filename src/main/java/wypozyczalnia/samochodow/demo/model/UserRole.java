@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-public class UzytkownikRola {
+public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +29,8 @@ public class UzytkownikRola {
     private String idRola;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<Uzytkownik> users = new HashSet<>();
+    private Set<User> users = new HashSet<>();
 
-    public UzytkownikRola(){}
+    public UserRole(){}
 
 }

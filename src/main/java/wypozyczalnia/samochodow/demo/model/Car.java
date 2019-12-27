@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Samochod {
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Samochod {
     @Column(name = "czy_wypozyczony")
     private boolean czyWypozyczony;
 
-    public Samochod(){}
+    public Car(){}
 
 
 }

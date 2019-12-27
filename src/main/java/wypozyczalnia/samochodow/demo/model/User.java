@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-public class Uzytkownik {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_uzytkownik")
@@ -34,7 +34,7 @@ public class Uzytkownik {
     private String passwordConfirm;
 
     @ManyToMany(mappedBy = "users")
-    private Set<Rola> roles;
+    private Set<Role> roles;
 
-    public Uzytkownik(){}
+    public User(){}
 }
