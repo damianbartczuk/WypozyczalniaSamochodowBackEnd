@@ -1,4 +1,4 @@
-package wypozyczalnia.samochodow.demo;
+package wypozyczalnia.samochodow.demo.konfiguracja;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +22,23 @@ import wypozyczalnia.samochodow.demo.jwtauth.JwtRequestFilter;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
+
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    @Autowired
     private UserDetailsService jwtUserDetailsService;
-    @Autowired
     private JwtRequestFilter jwtRequestFilter;
+
+    @Autowired
+    public WebSecurityConfig(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, UserDetailsService jwtUserDetailsService, JwtRequestFilter jwtRequestFilter) {
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+        this.jwtUserDetailsService = jwtUserDetailsService;
+        this.jwtRequestFilter = jwtRequestFilter;
+    }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -48,8 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf()
                 .disable()
-                .authorizeRequests().antMatchers("/authenticate").permitAll()
-                .antMatchers( "/pobierz_uzytkownikow", "/pobierz_samochody")
+                .authorizeRequests().antMatchers("/authenticate", "/swagger-ui").permitAll()
+                .antMatchers("/pobierz_uzytkownikow", "/pobierz_samochody")
                 .authenticated()
                 .and()
                 .exceptionHandling()

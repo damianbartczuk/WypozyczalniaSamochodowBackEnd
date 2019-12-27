@@ -8,45 +8,45 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import wypozyczalnia.samochodow.demo.model.Uzytkownik;
-import wypozyczalnia.samochodow.demo.repozytorium.UzytkownikRepository;
+import wypozyczalnia.samochodow.demo.model.User;
+import wypozyczalnia.samochodow.demo.repozytorium.UserRepository;
 
 import java.util.List;
 
 @Service
 @Slf4j
 @AllArgsConstructor
-public class UzytkownikService {
+public class UserService {
 
-    private UzytkownikRepository uzytkownikRepository;
+    private UserRepository userRepository;
 
-    public List<Uzytkownik> odczytUzytkownikow(){
+    public List<User> odczytUzytkownikow(){
         log.info("Odczytujemy uzytkownikow w serwisie posortowanych po nazwie uzytkownikow");
-        return this.uzytkownikRepository.findAll(Sort.by(Sort.Direction.ASC, "username"));
+        return this.userRepository.findAll(Sort.by(Sort.Direction.ASC, "username"));
     }
 
-    public Uzytkownik pobierzUzytkownika(String username, String password) {
+    public User pobierzUzytkownika(String username, String password) {
         log.info("Odeczytujemy uzytkownika z username = {} oraz password = {}", username, password);
-        return this.uzytkownikRepository.findByUsernameAndPassword(username, password);
+        return this.userRepository.findByUsernameAndPassword(username, password);
     }
 
-    public Uzytkownik pobierzUzytkownika(String username) {
+    public User pobierzUzytkownika(String username) {
         log.info("Odeczytujemy uzytkownika z username = {}", username);
-        return this.uzytkownikRepository.findByUsername(username);
+        return this.userRepository.findByUsername(username);
     }
 
-    public Uzytkownik zapiszUzytkownika(Uzytkownik uzytkownik) {
+    public User zapiszUzytkownika(User uzytkownik) {
         log.info("Trafiles pod zapis uzytkownika {}", uzytkownik);
         uzytkownik.setPassword(bCryptPasswordEncoder().encode(uzytkownik.getPassword()));
         log.info("zahaszowane hasło: {}" + uzytkownik.getPassword());
-        return this.uzytkownikRepository.save(uzytkownik);
+        return this.userRepository.save(uzytkownik);
     }
 
-    public Uzytkownik findByUsername(String username) {
+    public User findByUsername(String username) {
         if(Strings.isEmpty(username)) {
-            throw new UsernameNotFoundException("Uzytkownii o takiej nazwie nie istnieje");
+            throw new UsernameNotFoundException("Uzytkownik o takiej nazwie nie istnieje");
         }
-        return this.uzytkownikRepository.findByUsername(username);
+        return this.userRepository.findByUsername(username);
     }
 
     @Bean

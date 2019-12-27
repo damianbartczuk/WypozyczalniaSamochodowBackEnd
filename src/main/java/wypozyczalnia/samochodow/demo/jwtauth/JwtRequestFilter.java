@@ -1,8 +1,8 @@
 package wypozyczalnia.samochodow.demo.jwtauth;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,10 +18,10 @@ import java.io.IOException;
 
 @Slf4j
 @Component
+@AllArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
-    @Autowired
+
     private JwtUserDetailsService jwtUserDetailsService;
-    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
     @Override
@@ -41,16 +41,17 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
                 log.info("username = {}", username);
             } catch (IllegalArgumentException e) {
-                System.out.println("Unable to get JWT Token");
+                log.debug("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {
-                System.out.println("JWT Token has expired");
+                log.debug("JWT Token has expired");
             }
         } else {
             logger.warn("JWT Token is null oraz not conains bearer prefix");
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
-            if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
+            boolean isCorrectToken = jwtTokenUtil.validateToken(jwtToken, userDetails);
+            if (isCorrectToken) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken

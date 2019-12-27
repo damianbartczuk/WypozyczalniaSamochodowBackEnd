@@ -1,5 +1,8 @@
 package wypozyczalnia.samochodow.demo.kontroler;
 
+import io.swagger.annotations.Api;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,11 @@ import wypozyczalnia.samochodow.demo.jwtauth.JwtResponse;
 import wypozyczalnia.samochodow.demo.jwtauth.JwtTokenUtil;
 import wypozyczalnia.samochodow.demo.jwtauth.JwtUserDetailsService;
 
+
+@Api(tags = "Authentication API")
+@Slf4j
+@AllArgsConstructor
+@RequestMapping("api/Car")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class JwtAuthenticationController {
@@ -30,9 +38,14 @@ public class JwtAuthenticationController {
         this.userDetailsService = userDetailsService;
     }
 
-
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    /**
+     * Endpoint do autoryzacji
+     * @param authenticationRequest
+     * @return 200 gdy istnieje user o podanych username oraz password
+     * @throws Exception
+     */
+    @PostMapping(value = "/authenticate")
+    public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());

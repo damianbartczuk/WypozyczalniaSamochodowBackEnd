@@ -8,6 +8,9 @@ import wypozyczalnia.samochodow.demo.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+    @Query(value = "from User u where u.username = :username and u.password = :password")
+    User findByUsernameAndPassword(String username, String password);
+
     @Query(value = "from User u where u.username = :username")
     User findByUsername(String username);
 }
