@@ -1,4 +1,4 @@
-package wypozyczalnia.samochodow.demo;
+package wypozyczalnia.samochodow.demo.jwtauth;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

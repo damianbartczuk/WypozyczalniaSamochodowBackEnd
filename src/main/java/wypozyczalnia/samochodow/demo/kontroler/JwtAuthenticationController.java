@@ -1,4 +1,4 @@
-package wypozyczalnia.samochodow.demo;
+package wypozyczalnia.samochodow.demo.kontroler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
+import wypozyczalnia.samochodow.demo.jwtauth.JwtRequest;
+import wypozyczalnia.samochodow.demo.jwtauth.JwtResponse;
+import wypozyczalnia.samochodow.demo.jwtauth.JwtTokenUtil;
+import wypozyczalnia.samochodow.demo.jwtauth.JwtUserDetailsService;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class JwtAuthenticationController {

@@ -1,4 +1,4 @@
-package wypozyczalnia.samochodow.demo;
+package wypozyczalnia.samochodow.demo.jwtauth;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;

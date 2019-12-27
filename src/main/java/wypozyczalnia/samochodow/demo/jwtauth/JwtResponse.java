@@ -1,4 +1,4 @@
-package wypozyczalnia.samochodow.demo;
+package wypozyczalnia.samochodow.demo.jwtauth;
 
 
 import java.io.Serializable;
