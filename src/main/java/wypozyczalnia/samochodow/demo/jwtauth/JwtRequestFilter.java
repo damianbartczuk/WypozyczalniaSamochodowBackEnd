@@ -29,7 +29,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String requestTokenHeader = request.getHeader("Authorization");
-        requestTokenHeader = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYmFydGN6dWsiLCJleHAiOjE1Nzc0ODQ2MDAsImlhdCI6MTU3NzQ2NjYwMH0.BuKKgdFYtawS7-mu6CftXLbqeOhvCkrIHsTXgmTYBHc7Kl7IvBkSmgE8ZjxKR9pqY1tKNGvWklLRvGcaBd62mA";
         log.info("wyslany token = {}", requestTokenHeader);
 
         String username = null;
