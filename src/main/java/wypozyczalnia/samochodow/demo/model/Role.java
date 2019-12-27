@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity(name = "Rola")
@@ -21,10 +23,8 @@ public class Role {
     private Long idRola;
 
     @Column(name = "nazwa")
+    @NotEmpty(message = "Name of role cannot be empty")
     private String nazwa;
-
-//    @ManyToMany(mappedBy = "roles")
-
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "uzytkownik_rola", joinColumns = {
@@ -33,5 +33,7 @@ public class Role {
     @JsonIgnore
     private Set<User> users;
 
-    public Role(){}
+    public Role() {
+        // konstruktor na potrzeby hibernate
+    }
 }

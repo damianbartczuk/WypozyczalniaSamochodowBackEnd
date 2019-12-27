@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,9 +29,11 @@ public class UserRole {
     @Column(name = "id_rola")
     private String idRola;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
-    public UserRole(){}
+    public UserRole(){
+        //        konstruktor na potrzeby hibernate
+    }
 
 }
