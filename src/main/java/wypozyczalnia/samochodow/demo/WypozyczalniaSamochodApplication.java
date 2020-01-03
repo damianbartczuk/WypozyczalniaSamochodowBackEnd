@@ -1,23 +1,23 @@
 package wypozyczalnia.samochodow.demo;
 
 import liquibase.integration.spring.SpringLiquibase;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.sql.DataSource;
-
+@EnableSwagger2
 @SpringBootApplication
-@Slf4j
-@ComponentScan({"wypozyczalnia.samochodow.demo.jwtauth", "wypozyczalnia.samochodow.demo.konfiguracja",
-		"wypozyczalnia.samochodow.demo.kontroler", "wypozyczalnia.samochodow.demo.model",
-		"wypozyczalnia.samochodow.demo.repozytorium", "wypozyczalnia.samochodow.demo.serwisy"})
-public class DemoApplication {
-
+public class WypozyczalniaSamochodApplication {
+	private static final Logger log = LoggerFactory.getLogger(WypozyczalniaSamochodApplication.class);
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		log.info("============================================================");
+		log.info("java version : {}", System.getProperty("java.runtime.version" ));
+		log.info("============================================================");
+		SpringApplication.run(WypozyczalniaSamochodApplication.class, args);
 	}
 
 	@Bean

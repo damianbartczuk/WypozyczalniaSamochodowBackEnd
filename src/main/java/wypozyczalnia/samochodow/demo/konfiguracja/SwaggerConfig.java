@@ -1,6 +1,9 @@
 package wypozyczalnia.samochodow.demo.konfiguracja;
 
+
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -25,9 +28,9 @@ public class SwaggerConfig {
                 .groupName("damianbartczuk-apiWypozyczalniaSamochodow")
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("wypozyczalnia.samochodow.demo.kontroler"))
                 .paths(value -> value != null && (value.matches("/api.*") || value.matches("/test.*")))
-                .build()
+                .build().pathMapping("/swagger")
                 .globalResponseMessage(RequestMethod.GET,getListOfResponseMessages());
     }
 

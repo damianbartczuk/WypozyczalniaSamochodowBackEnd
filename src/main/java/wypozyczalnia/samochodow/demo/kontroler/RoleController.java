@@ -14,11 +14,10 @@ import java.util.List;
 
 
 @Api(tags = "Role API")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", exposedHeaders = "Authorization")
 @AllArgsConstructor
-@RequestMapping("api/Role")
+@RequestMapping("api/role")
 @RestController
-@Slf4j
 public class RoleController {
 
     private RoleRepository roleRepository;

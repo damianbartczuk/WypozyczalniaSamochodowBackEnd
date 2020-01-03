@@ -19,11 +19,9 @@ import wypozyczalnia.samochodow.demo.jwtauth.JwtUserDetailsService;
 
 
 @Api(tags = "Authentication API")
-@Slf4j
 @AllArgsConstructor
-@RequestMapping("api/Car")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", exposedHeaders = {"Authorization", "Access-Control-Allow-Origin", "Content-type", "Access-Control-Expose-Headers"})
 public class JwtAuthenticationController {
     private static final String INVALID_CREDENTIALS = "INVALID_CREDENTIALS";
     private static final String USER_DISABLED = "USER_DISABLED";
@@ -44,7 +42,7 @@ public class JwtAuthenticationController {
      * @return 200 gdy istnieje user o podanych username oraz password
      * @throws Exception
      */
-    @PostMapping(value = "/authenticate")
+    @RequestMapping(value = "/authenticate", method = {RequestMethod.GET, RequestMethod.POST})
     public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userDetailsService
