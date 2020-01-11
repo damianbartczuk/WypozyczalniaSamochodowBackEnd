@@ -56,8 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf()
                 .disable()
-                .authorizeRequests().antMatchers("/authenticate", "/swagger-ui").permitAll()
-                .antMatchers("/pobierz_uzytkownikow", "/pobierz_samochody")
+                .authorizeRequests().antMatchers("/authenticate").permitAll()
+                .antMatchers("/pobierz_uzytkownikow", "/pobierz_samochody", "/save_rental", "pobierz_uzytkownika_za_pomoca_tokenu")
                 .authenticated()
                 .and()
 //                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
