@@ -34,13 +34,17 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             log.info("header content type = {}", request.getHeader("Content-Type"));
             log.info("header Authorization = {}", request.getHeader("Authorization"));
             log.info("header repote user = {}", request.getRemoteUser());
+            log.info("query stringf = ", request.getQueryString());
+            log.info("dlugosc sesji = ", request.getSession().getMaxInactiveInterval());
             log.info("request url {}", request.getRequestURL());
+            log.info("parametry = " + request.getParameter("token"));
             log.info("zaczynam filtrowac");
             String requestTokenHeader = request.getHeader("Authorization");
             log.info("wyslany token = {}", requestTokenHeader);
 
             String username = null;
             String jwtToken = null;
+            String password = null;
 
             if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
                 jwtToken = requestTokenHeader.substring(7);
@@ -53,7 +57,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                     log.debug("JWT Token has expired");
                 }
             } else {
-                logger.warn("JWT Token is null oraz not conains bearer prefix");
+                logger.warn("JWT Token is null or not conains bearer prefix");
             }
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
