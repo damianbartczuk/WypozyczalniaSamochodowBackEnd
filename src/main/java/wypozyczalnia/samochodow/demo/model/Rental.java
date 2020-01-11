@@ -1,33 +1,32 @@
 package wypozyczalnia.samochodow.demo.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
+@Table(name = "wypozyczenie")
+@AllArgsConstructor
 public class Rental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( name = "idwypozyczenia")
     private int idRental;
 
     @NotNull(message = "Id samochodu nie moża być nullem")
-    @NotEmpty(message = "Id samochodu nie moża być puste")
-    private int idCar;
+    @Column(name = "idsamochodu")
+    private Integer idCar;
 
-    @NotEmpty(message = "Id użytkownika nie moża być puste")
-    @NotNull(message = "Id użytkownika nie moża być nullem")
-    private int idUser;
+    @NotNull(message = "Id uzytkownika nie moża być nullem")
+    @Column(name = "iduzytkownika")
+    private Integer idUser;
+
+    public Rental(){
+//        konstruktor na potrzeby hibernate
+    }
 }
