@@ -13,9 +13,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@ToString
 @AllArgsConstructor
-public class Role {
+public class Role{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rola")
@@ -34,5 +33,10 @@ public class Role {
 
     public Role() {
         // konstruktor na potrzeby hibernate
+    }
+
+    @Override
+    public String toString() {
+        return "User = " + this.getNazwa();
     }
 }
