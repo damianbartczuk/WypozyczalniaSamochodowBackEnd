@@ -28,7 +28,7 @@ public class CarService {
     public List<Car> odczytSamochodow(Integer pageNumber, Integer pageSize){
         log.info("Odczytujemy samochody w serwisie");
         if(pageSize == null && pageNumber == null) {
-            return this.carRepository.findAll(PageRequest.of(0, 100)).getContent();
+            return this.carRepository.findAll(PageRequest.of(0, 2)).getContent();
         }
         if(pageSize == null){
             log.info("Uzywam domyslnegio rozmiaryu strony {} dla pageNumber = {}", defaultPageSize, pageNumber);
@@ -46,5 +46,11 @@ public class CarService {
     public Car zapiszSamochod(Car samochod) {
         log.info("Trafiles pod zapis samochodu {}", samochod);
         return this.carRepository.save(samochod);
+    }
+
+
+
+    public Car getCarByRental(Integer idRental){
+        return this.carRepository.findById(idRental).get();
     }
 }

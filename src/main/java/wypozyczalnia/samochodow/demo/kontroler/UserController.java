@@ -45,7 +45,7 @@ public class UserController {
 
     @ApiOperation(value = "Zapisuje użytkownika, kodowanie hasła jest na poziomie kontrolera")
     @PostMapping( value = "zapisz_uzytkownika")
-    public ResponseEntity<User> zapiszUzytkownika(@PathVariable User userToSave) {
+    public ResponseEntity<User> zapiszUzytkownika(@RequestBody User userToSave) {
         log.info("Zapis uzytkownika = {}", userToSave);
         return new ResponseEntity<>(this.userService.zapiszUzytkownika(userToSave), HttpStatus.OK);
     }

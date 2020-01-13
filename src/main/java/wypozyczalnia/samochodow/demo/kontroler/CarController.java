@@ -18,7 +18,7 @@ import java.util.List;
 
 @Api(tags = "Car API")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", exposedHeaders = {"Authorization", "Access-Control-Allow-Origin", "Content-type", "Access-Control-Expose-Headers"})
+@CrossOrigin(origins = "http://localhost:4200") // exposedHeaders = {"Authorization", "Access-Control-Allow-Origin", "Content-type", "Access-Control-Expose-Headers"}
 @AllArgsConstructor
 public class CarController {
     private static final Logger log = LoggerFactory.getLogger(CarController.class);
@@ -36,7 +36,7 @@ public class CarController {
         return new ResponseEntity<>(this.carService.zapiszSamochod(samochod), HttpStatus.OK);
     }
 
-    @GetMapping(value = "pobierz_samochody")
+    @GetMapping(value = "/pobierz_samochody")
     @ApiOperation("Metoda zwraca liste samochodow które spełniają krytaria podane w parametrach")
     public ResponseEntity<List<Car>> pobierzSamochody(@RequestParam @Nullable Integer pageNumber, @RequestParam @Nullable Integer pageSize) {
         log.info("Trafiles po odczyt samochodow pageNumber = {} i pageSize = {}", pageNumber, pageSize);

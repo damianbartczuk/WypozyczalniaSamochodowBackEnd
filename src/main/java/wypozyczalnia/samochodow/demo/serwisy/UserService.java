@@ -3,7 +3,11 @@ package wypozyczalnia.samochodow.demo.serwisy;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,15 +18,15 @@ import wypozyczalnia.samochodow.demo.repozytorium.UserRepository;
 import java.util.List;
 
 @Service
-@Slf4j
 @AllArgsConstructor
 public class UserService {
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private UserRepository userRepository;
 
-    public List<User> odczytUzytkownikow(){
+    public Page<User> odczytUzytkownikow(Pageable pageable){
         log.info("Odczytujemy uzytkownikow w serwisie posortowanych po nazwie uzytkownikow");
-        return this.userRepository.findAll(Sort.by(Sort.Direction.ASC, "username"));
+        return this.userRepository.findAll(pageable);
     }
 
     public User pobierzUzytkownika(String username, String password) {
@@ -38,7 +42,7 @@ public class UserService {
     public User zapiszUzytkownika(User uzytkownik) {
         log.info("Trafiles pod zapis uzytkownika {}", uzytkownik);
         uzytkownik.setPassword(bCryptPasswordEncoder().encode(uzytkownik.getPassword()));
-        log.info("zahaszowane hasło: {}" + uzytkownik.getPassword());
+        log.info("zahaszowane hasło: {}", uzytkownik.getPassword());
         return this.userRepository.save(uzytkownik);
     }
 
@@ -47,6 +51,10 @@ public class UserService {
             throw new UsernameNotFoundException("Uzytkownik o takiej nazwie nie istnieje");
         }
         return this.userRepository.findByUsername(username);
+    }
+
+    public String findPasswordForUser(String username){
+        return this.userRepository.findByUsername(username).getPassword();
     }
 
     @Bean
