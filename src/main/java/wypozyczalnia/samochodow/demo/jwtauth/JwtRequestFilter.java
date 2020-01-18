@@ -29,7 +29,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-//        if(!request.getRequestURL().toString().contains("actuator")) {
             request.authenticate(response);
             log.info("header content type = {}", request.getHeader("Content-Type"));
             log.info("header Authorization = {}", request.getHeader("Authorization"));
@@ -38,7 +37,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             log.info("zaczynam filtrowac");
             String requestTokenHeader = request.getHeader("Authorization");
             log.info("wyslany token = {}", requestTokenHeader);
-
+//requestTokenHeader = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYmFydGN6dWsiLCJleHAiOjE1Nzg5NzA3NTcsImlhdCI6MTU3ODk1Mjc1N30.WPFBmWBhJHeRBoSLFTgyGLt2S1HGELZJY72fZcXboe4Qf8C2DA271Ec3iSKGfIUjJ499rpxP4Aqr9K_SbjAUkQ";
             String username = null;
             String jwtToken = null;
 
@@ -67,8 +66,5 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 }
             }
             chain.doFilter(request, response);
-//        }else{
-//            logger.info("takiego requestu nie filtujemy " + request.getRequestURL().toString());
-//        }
     }
 }

@@ -17,9 +17,8 @@ import java.util.List;
 
 @Api(tags = "Car API")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", exposedHeaders = {"Authorization", "Access-Control-Allow-Origin", "Content-type", "Access-Control-Expose-Headers"})
+@CrossOrigin
 @AllArgsConstructor
-@RequestMapping("api/car")
 public class CarController {
     private static final Logger log = LoggerFactory.getLogger(CarController.class);
     private CarService carService;
@@ -31,12 +30,12 @@ public class CarController {
 
     @PostMapping(value = "zapisz_samochod")
     @Transactional
-    public ResponseEntity<Car> zapiszSamochod(@PathVariable Car samochod) {
+    public ResponseEntity<Car> zapiszSamochod(@RequestBody Car samochod) {
         log.info("zapis samochodu");
         return new ResponseEntity<>(this.carService.zapiszSamochod(samochod), HttpStatus.OK);
     }
 
-    @GetMapping(value = "pobierz_samochody")
+    @GetMapping(value = "/ps")
     public ResponseEntity<List<Car>> pobierzSamochody() {
         log.info("Trafiles po odczyt samochodow");
         return new ResponseEntity<>(this.carService.odczytSamochodow(), HttpStatus.OK);
