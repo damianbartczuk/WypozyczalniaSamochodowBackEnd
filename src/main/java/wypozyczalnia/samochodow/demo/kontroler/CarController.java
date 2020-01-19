@@ -38,7 +38,7 @@ public class CarController {
 
     @GetMapping(value = "/pobierz_samochody")
 //    @ApiOperation("Metoda zwraca liste samochodow które spełniają krytaria podane w parametrach")
-    public ResponseEntity<List<Car>> pobierzSamochody(@RequestParam @Nullable Integer pageNumber, @RequestParam @Nullable Integer pageSize) {
+    public ResponseEntity<List<Car>> pobierzSamochody(@RequestParam @Nullable Integer pageNumber, @RequestParam @Nullable Integer pageSize, @RequestParam @Nullable String token) {
         log.info("Trafiles po odczyt samochodow pageNumber = {} i pageSize = {}", pageNumber, pageSize);
         return new ResponseEntity<>(this.carService.odczytSamochodow( pageNumber, pageSize), HttpStatus.OK);
     }
