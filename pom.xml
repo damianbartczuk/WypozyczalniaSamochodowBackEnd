@@ -160,19 +160,6 @@
 			<version>5.2.1.RELEASE</version>
 		</dependency>
 
-		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swagger-annotations</artifactId>
-			<version>${swagger-annotations.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swagger-models</artifactId>
-			<version>${swagger-models.version}</version>
-
-		</dependency>
-
 	</dependencies>
 
 	<build>

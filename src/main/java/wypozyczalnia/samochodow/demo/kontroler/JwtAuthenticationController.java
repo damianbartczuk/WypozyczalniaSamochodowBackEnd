@@ -1,6 +1,6 @@
 package wypozyczalnia.samochodow.demo.kontroler;
 
-import io.swagger.annotations.Api;
+//import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import wypozyczalnia.samochodow.demo.jwtauth.JwtTokenUtil;
 import wypozyczalnia.samochodow.demo.jwtauth.JwtUserDetailsService;
 
 
-@Api(tags = "Authentication API")
+//@Api(tags = "Authentication API")
 @AllArgsConstructor
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")

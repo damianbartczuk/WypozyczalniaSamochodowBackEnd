@@ -1,7 +1,7 @@
 package wypozyczalnia.samochodow.demo.kontroler;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ import wypozyczalnia.samochodow.demo.serwisy.UserService;
 
 @CrossOrigin
 @RestController
-@Api(tags = "User API")
+//@Api(tags = "User API")
 public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
@@ -36,14 +36,14 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Pobiera informacje na temat użytkowników")
+//    @ApiOperation(value = "Pobiera informacje na temat użytkowników")
     @GetMapping( value = "pobierz_uzytkownikow")
     public ResponseEntity<Page<User>> pobierzUzytkownikow(Pageable pageable) {
         log.info("Pobranie uzytkownikow");
         return new ResponseEntity<>(this.userService.odczytUzytkownikow(pageable), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Zapisuje użytkownika, kodowanie hasła jest na poziomie kontrolera")
+//    @ApiOperation(value = "Zapisuje użytkownika, kodowanie hasła jest na poziomie kontrolera")
     @PostMapping( value = "zapisz_uzytkownika")
     public ResponseEntity<User> zapiszUzytkownika(@RequestBody User userToSave) {
         log.info("Zapis uzytkownika = {}", userToSave);

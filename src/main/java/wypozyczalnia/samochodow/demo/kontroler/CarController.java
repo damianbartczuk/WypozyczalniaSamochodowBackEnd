@@ -1,8 +1,8 @@
 package wypozyczalnia.samochodow.demo.kontroler;
 
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import wypozyczalnia.samochodow.demo.serwisy.CarService;
 
 import java.util.List;
 
-@Api(tags = "Car API")
+//@Api(tags = "Car API")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
@@ -37,7 +37,7 @@ public class CarController {
     }
 
     @GetMapping(value = "/pobierz_samochody")
-    @ApiOperation("Metoda zwraca liste samochodow które spełniają krytaria podane w parametrach")
+//    @ApiOperation("Metoda zwraca liste samochodow które spełniają krytaria podane w parametrach")
     public ResponseEntity<List<Car>> pobierzSamochody(@RequestParam @Nullable Integer pageNumber, @RequestParam @Nullable Integer pageSize) {
         log.info("Trafiles po odczyt samochodow pageNumber = {} i pageSize = {}", pageNumber, pageSize);
         return new ResponseEntity<>(this.carService.odczytSamochodow( pageNumber, pageSize), HttpStatus.OK);
