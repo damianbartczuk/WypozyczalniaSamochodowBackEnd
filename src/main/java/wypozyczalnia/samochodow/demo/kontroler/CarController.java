@@ -2,12 +2,13 @@ package wypozyczalnia.samochodow.demo.kontroler;
 
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import wypozyczalnia.samochodow.demo.model.Car;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Api(tags = "Car API")
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class CarController {
     private static final Logger log = LoggerFactory.getLogger(CarController.class);
@@ -35,10 +36,11 @@ public class CarController {
         return new ResponseEntity<>(this.carService.zapiszSamochod(samochod), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/ps")
-    public ResponseEntity<List<Car>> pobierzSamochody() {
-        log.info("Trafiles po odczyt samochodow");
-        return new ResponseEntity<>(this.carService.odczytSamochodow(), HttpStatus.OK);
+    @GetMapping(value = "/pobierz_samochody")
+    @ApiOperation("Metoda zwraca liste samochodow które spełniają krytaria podane w parametrach")
+    public ResponseEntity<List<Car>> pobierzSamochody(@RequestParam @Nullable Integer pageNumber, @RequestParam @Nullable Integer pageSize) {
+        log.info("Trafiles po odczyt samochodow pageNumber = {} i pageSize = {}", pageNumber, pageSize);
+        return new ResponseEntity<>(this.carService.odczytSamochodow( pageNumber, pageSize), HttpStatus.OK);
     }
 }
 

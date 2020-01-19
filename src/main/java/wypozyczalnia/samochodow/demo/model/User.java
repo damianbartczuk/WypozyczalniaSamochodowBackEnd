@@ -2,7 +2,6 @@ package wypozyczalnia.samochodow.demo.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -12,7 +11,6 @@ import java.util.Set;
 @Table(name = "uzytkownik")
 @Getter
 @Setter
-@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,5 +38,18 @@ public class User {
 
     public User(){
         // konstruktor na potrzeby hibernate
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUzytkownik=" + idUzytkownik +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", passwordConfirm='" + passwordConfirm + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }
