@@ -18,6 +18,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
+//        TODO tu trzeba załadować role
 //        wypozyczalnia.samochodow.demo.model.User pobranyUzytkownik = entityManager.createQuery("select u from User u where u.username = :username", wypozyczalnia.samochodow.demo.model.User.class).setParameter("username", username).getSingleResult();
 //        if (pobranyUzytkownik != null) {
 //            Set<Role> roles = pobranyUzytkownik.getRoles();

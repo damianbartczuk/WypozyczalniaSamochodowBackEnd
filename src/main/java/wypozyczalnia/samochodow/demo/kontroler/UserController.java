@@ -15,7 +15,7 @@ import wypozyczalnia.samochodow.demo.jwtauth.JwtTokenUtil;
 import wypozyczalnia.samochodow.demo.model.User;
 import wypozyczalnia.samochodow.demo.serwisy.UserService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RestController
 @Api(tags = "User API")
 public class UserController {
@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping(value = "pobierz_uzytkownika_za_pomoca_tokenu")
-    public ResponseEntity<User> pobierzUzytkownikaZTokeny(@RequestParam(value = "token") String token){
+    public ResponseEntity<User> pobierzUzytkownikaZTokenu(@RequestParam(value = "token") String token) {
         String username = this.jwtTokenUtil.getUsernameFromToken(token);
         User user = userService.findByUsername(username);
         return new ResponseEntity<>(user, HttpStatus.OK);

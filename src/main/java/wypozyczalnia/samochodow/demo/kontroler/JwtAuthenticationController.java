@@ -21,7 +21,7 @@ import wypozyczalnia.samochodow.demo.jwtauth.JwtUserDetailsService;
 @Api(tags = "Authentication API")
 @AllArgsConstructor
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", exposedHeaders = {"Authorization", "Access-Control-Allow-Origin", "Content-type", "Access-Control-Expose-Headers"})
+@CrossOrigin(origins = "http://localhost:4200")
 public class JwtAuthenticationController {
     private static final String INVALID_CREDENTIALS = "INVALID_CREDENTIALS";
     private static final String USER_DISABLED = "USER_DISABLED";

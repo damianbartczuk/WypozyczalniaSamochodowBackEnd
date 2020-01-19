@@ -15,9 +15,8 @@ public class SpringConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         log.info("AddCorsMapping");
-        registry.addMapping("/**").allowCredentials(true).allowedOrigins("http://localhost:4200/zaloguj")
+        registry.addMapping("/**").allowCredentials(true).allowedOrigins("http://localhost:4200")
                 .allowedHeaders("Authorization", "Cache-Control", "Content-Type", "Accept", "X-Requested-With", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Origin")
-                .exposedHeaders("Access-Control-Expose-Headers", "Authorization", "Content-Type", "Access-Control-Allow-Origin")
                 .allowedMethods("GET", "OPTIONS", "POST", "PUT", "DELETE", "PATCH");
     }
 }
