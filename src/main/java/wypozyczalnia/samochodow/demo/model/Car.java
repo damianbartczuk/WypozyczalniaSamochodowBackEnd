@@ -29,7 +29,7 @@ public class Car {
     @Column(name = "model")
     private String model;
 
-    @NotEmpty(message = "Logo cannot be empty")
+//    @NotEmpty(message = "Logo cannot be empty")
     @Column(name = "logo")
     private String logo;
 
