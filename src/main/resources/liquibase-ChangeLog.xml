@@ -1,216 +1,241 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-<!--    <changeSet author="Damian" id="rola_1">-->
-<!--        <insert tableName="rola">-->
-<!--            <column name="nazwa" value="manager"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
-<!--    <changeSet author="Damian" id="user_1">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Damian"/>-->
-<!--            <column name="nazwisko" value="Bartczuk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="dbartczuk"/>-->
-<!--            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="create_table_rola" author="Damian">
+        <createTable tableName="rola">
+            <column name="id_rola" type="int"/>
+            <column name="nazwa" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
 
-<!--    <changeSet author="Damian" id="user_2">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Jan"/>-->
-<!--            <column name="nazwisko" value="Kowalski"/>-->
-<!--            <column name="nazwa_uzytkownika" value="jkowalski"/>-->
-<!--            <column name="haslo" value="$2y$12$FYTcb915VGa0vzlnlbGFneXVe.lwMKGlNG1Puy7VvDxsmm5PAGCvC"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+    <changeSet id="create_table_uzytkownik_rola" author="Damian">
+        <createTable tableName="uzytkownik_rola">
+            <column name="id_uzytkownik_rola" type="int" autoIncrement="true"/>
+            <column name="id_rola" type="int"/>
+            <column name="id_uzytkownik" type="int"/>
+        </createTable>
+    </changeSet>
 
-<!--    <changeSet author="Damian" id="user_3">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Maryla"/>-->
-<!--            <column name="nazwisko" value="Rodowicz"/>-->
-<!--            <column name="nazwa_uzytkownika" value="mrodowicz"/>-->
-<!--            <column name="haslo" value="$2y$12$BXATpTvSuk8Piau1Uqu4WOEWwlaMlhdOlUteTisBlGUbuMYvctiv6"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+    <changeSet author="Damian" id="uzytkownik_rola_1">
+        <insert tableName="uzytkownik_rola">
+            <column name="id_rola" value="1"/>
+            <column name="id_uzytkownik" value="1"/>
+        </insert>
+    </changeSet>
 
-<!--    <changeSet author="Damian" id="user_4">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Adam"/>-->
-<!--            <column name="nazwisko" value="Malysz"/>-->
-<!--            <column name="nazwa_uzytkownika" value="amalysz"/>-->
-<!--            <column name="haslo" value="$2y$12$LwuB81.W2MOrRNzZku5dae4rUbfJrzTXgV/Nn9rrU4fdLGwi6i0W."/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+    <changeSet author="Damian" id="rola_2">
+        <insert tableName="rola">
+            <column name="id_rola" value="2"/>
+            <column name="nazwa" value="admin"/>
+        </insert>
+    </changeSet>
 
-<!--    <changeSet author="Damian" id="user_5">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Kamil"/>-->
-<!--            <column name="nazwisko" value="Stoch"/>-->
-<!--            <column name="nazwa_uzytkownika" value="kstoch"/>-->
-<!--            <column name="haslo" value="$2y$12$A04whDk8oXDkbPKGS.SAHOP1ngQu3i7fb67WL6zL.S/CAOlbJhSP6"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+    <changeSet author="Damian" id="uzytkownik_rola_2">
+        <insert tableName="uzytkownik_rola">
+            <column name="id_rola" value="2"/>
+            <column name="id_uzytkownik" value="1"/>
+        </insert>
+    </changeSet>
 
-<!--    <changeSet author="Damian" id="user_6">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Justyna"/>-->
-<!--            <column name="nazwisko" value="Kowalczyk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="jkowalczyk"/>-->
-<!--            <column name="haslo" value="$2y$12$uV/XVvdskkShsg8yL9XoeOOjj5Bi/uHVrqcsy03n.8QTs/NHTSaRi"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
 
-<!--    <changeSet author="Damian" id="user_7">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Robert"/>-->
-<!--            <column name="nazwisko" value="Lewandowski"/>-->
-<!--            <column name="nazwa_uzytkownika" value="rlewandowski"/>-->
-<!--            <column name="haslo" value="$2y$12$UB.bjQt4IEt7NPyfuhI2E.1B9EZijMbBpDzWBUOaxlVDjsIzSfhVm"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+<!--Tworzenie tabelki samochod-->
+    <changeSet id="create_table_Samochod" author="Damian">
+        <createTable tableName="samochod">
+            <column name="id_samochodu" type="int" autoIncrement="true"/>
+            <column name="marka" type="varchar(255)"/>
+            <column name="model" type="varchar(255)"/>
+            <column name="logo" type="varchar(255)"/>
+            <column name="opis" type="varchar(255)"/>
+            <column name="cena_za_dobe" type="int"/>
+            <column name="czy_wypozyczony" type="boolean"/>
+        </createTable>
+    </changeSet>
 
-<!--    <changeSet author="Damian" id="user_8">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Małgorzata"/>-->
-<!--            <column name="nazwisko" value="Kożuchowska"/>-->
-<!--            <column name="nazwa_uzytkownika" value="mkozuchowska"/>-->
-<!--            <column name="haslo" value="$2y$12$ByvVpAqyupTnms5TVBAvju3fHPuc8Wx6S/jAsQSULmFZRP5BUSb8u"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+    <!--Tworzenie tabelki uzytkoniwk-->
+    <changeSet id="create_table_uzytkownik" author="Damian">
+        <createTable tableName="uzytkownik">
+            <column name="id_uzytkownik" autoIncrement="true" type="int"/>
+            <column name="imie" type="varchar(200)"/>
+            <column name="nazwisko" type="varchar(200)"/>
+            <column name="haslo" type="varchar(200)"/>
+            <column name="nazwa_uzytkownika" type="varchar(200)"/>
+        </createTable>
+        <addPrimaryKey tableName="uzytkownik" columnNames="id_uzytkownik"/>
+    </changeSet>
+<!--    Tworznie tabelki wypozyczenie-->
+    <changeSet id="create_table_wypozyczenie" author="Damian">
+        <createTable tableName="wypozyczenie" schemaName="public">
+            <column name="id_wypozyczenie" type="int" autoIncrement="true"/>
+            <column name="id_uzytkownika" type="int"/>
+            <column name="id_samochodu" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Damian" id="rola_1">
+        <insert tableName="rola">
+            <column name="id_rola" value="1"/>
+            <column name="nazwa" value="manager"/>
+        </insert>
+    </changeSet>
 
-<!--    <changeSet author="Damian" id="user_9">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Tomasz"/>-->
-<!--            <column name="nazwisko" value="Karolak"/>-->
-<!--            <column name="nazwa_uzytkownika" value="tkarolak"/>-->
-<!--            <column name="haslo" value="$2y$12$WUPgP6hYPgPvb5z6Y.xap.jKkntphN0njJ9WNKaRrR5WOObHKWWni"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
-<!--&lt;!&ndash;        trzeba zacząć od tego&ndash;&gt;-->
-<!--    <changeSet author="Damian" id="user_10">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Damian"/>-->
-<!--            <column name="nazwisko" value="Bartczuk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="dbartczuk"/>-->
-<!--            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+<!--uzupelnienie danymi uzytkowników-->
 
-<!--    <changeSet author="Damian" id="user_11">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Damian"/>-->
-<!--            <column name="nazwisko" value="Bartczuk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="dbartczuk"/>-->
-<!--            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+    <changeSet author="Damian" id="user_1">
+        <insert tableName="uzytkownik" schemaName="public">
+            <column name="imie" value="Damian"/>
+            <column name="nazwisko" value="Bartczuk"/>
+            <column name="nazwa_uzytkownika" value="dbartczuk"/>
+            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>
+        </insert>
+    </changeSet>
 
-<!--    <changeSet author="Damian" id="user_12">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Damian"/>-->
-<!--            <column name="nazwisko" value="Bartczuk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="dbartczuk"/>-->
-<!--            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+    <changeSet author="Damian" id="user_18">
+        <insert tableName="uzytkownik">
+            <column name="imie" value="Jan"/>
+            <column name="nazwisko" value="Kowalski"/>
+            <column name="nazwa_uzytkownika" value="jkowalski"/>
+            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>
+        </insert>
+    </changeSet>
 
-<!--    <changeSet author="Damian" id="user_13">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Damian"/>-->
-<!--            <column name="nazwisko" value="Bartczuk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="dbartczuk"/>-->
-<!--            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="user_2">
+            <insert tableName="uzytkownik">
+                <column name="imie" value="Jan"/>
+                <column name="nazwisko" value="Kowalski"/>
+                <column name="nazwa_uzytkownika" value="jkowalski"/>
+                <column name="haslo" value="$2y$12$FYTcb915VGa0vzlnlbGFneXVe.lwMKGlNG1Puy7VvDxsmm5PAGCvC"/>
+            </insert>
+        </changeSet>
 
-<!--    <changeSet author="Damian" id="user_14">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Damian"/>-->
-<!--            <column name="nazwisko" value="Bartczuk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="dbartczuk"/>-->
-<!--            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="user_3">
+            <insert tableName="uzytkownik">
+                <column name="imie" value="Maryla"/>
+                <column name="nazwisko" value="Rodowicz"/>
+                <column name="nazwa_uzytkownika" value="mrodowicz"/>
+                <column name="haslo" value="$2y$12$BXATpTvSuk8Piau1Uqu4WOEWwlaMlhdOlUteTisBlGUbuMYvctiv6"/>
+            </insert>
+        </changeSet>
 
-<!--    <changeSet author="Damian" id="user_15">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Damian"/>-->
-<!--            <column name="nazwisko" value="Bartczuk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="dbartczuk"/>-->
-<!--            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="user_4">
+            <insert tableName="uzytkownik">
+                <column name="imie" value="Adam"/>
+                <column name="nazwisko" value="Malysz"/>
+                <column name="nazwa_uzytkownika" value="amalysz"/>
+                <column name="haslo" value="$2y$12$LwuB81.W2MOrRNzZku5dae4rUbfJrzTXgV/Nn9rrU4fdLGwi6i0W."/>
+            </insert>
+        </changeSet>
 
-<!--    <changeSet author="Damian" id="user_16">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Damian"/>-->
-<!--            <column name="nazwisko" value="Bartczuk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="dbartczuk"/>-->
-<!--            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="user_5">
+            <insert tableName="uzytkownik">
+                <column name="imie" value="Kamil"/>
+                <column name="nazwisko" value="Stoch"/>
+                <column name="nazwa_uzytkownika" value="kstoch"/>
+                <column name="haslo" value="$2y$12$A04whDk8oXDkbPKGS.SAHOP1ngQu3i7fb67WL6zL.S/CAOlbJhSP6"/>
+            </insert>
+        </changeSet>
 
-<!--    <changeSet author="Damian" id="user_17">-->
-<!--        <insert tableName="uzytkownik">-->
-<!--            <column name="imie" value="Damian"/>-->
-<!--            <column name="nazwisko" value="Bartczuk"/>-->
-<!--            <column name="nazwa_uzytkownika" value="dbartczuk"/>-->
-<!--            <column name="haslo" value="$2y$12$e7jQg7.bFA65F9.OVq5cnuBcliLSjYGtBfXclgDpGyn7KXdu59nhG"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="user_6">
+            <insert tableName="uzytkownik">
+                <column name="imie" value="Justyna"/>
+                <column name="nazwisko" value="Kowalczyk"/>
+                <column name="nazwa_uzytkownika" value="jkowalczyk"/>
+                <column name="haslo" value="$2y$12$uV/XVvdskkShsg8yL9XoeOOjj5Bi/uHVrqcsy03n.8QTs/NHTSaRi"/>
+            </insert>
+        </changeSet>
 
-<!--&lt;!&ndash;    Samochody&ndash;&gt;-->
-<!--    <changeSet author="Damian" id="car_1">-->
-<!--        <insert tableName="samochod">-->
-<!--            <column name="marka" value="BMW"/>-->
-<!--            <column name="model" value="F30"/>-->
-<!--            <column name="logo" value="assets/bmwseria1.jpg"/>-->
-<!--            <column name="opis" value="Samochod klasy sredniej"/>-->
-<!--            <column name="cena_za_dobe" value="3500"/>-->
-<!--            <column name="czy_wypozyczony" value="false"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="user_7">
+            <insert tableName="uzytkownik">
+                <column name="imie" value="Robert"/>
+                <column name="nazwisko" value="Lewandowski"/>
+                <column name="nazwa_uzytkownika" value="rlewandowski"/>
+                <column name="haslo" value="$2y$12$UB.bjQt4IEt7NPyfuhI2E.1B9EZijMbBpDzWBUOaxlVDjsIzSfhVm"/>
+            </insert>
+        </changeSet>
 
-<!--    <changeSet author="Damian" id="car_2">-->
-<!--        <insert tableName="samochod">-->
-<!--            <column name="marka" value="Lamborghini"/>-->
-<!--            <column name="model" value="huracan evo"/>-->
-<!--            <column name="logo" value="assets/huracan.jpg"/>-->
-<!--            <column name="opis" value="The Huracán EVO is the most successful V10 in Lamborghini history."/>-->
-<!--            <column name="cena_za_dobe" value="54000"/>-->
-<!--            <column name="czy_wypozyczony" value="false"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="user_8">
+            <insert tableName="uzytkownik">
+                <column name="imie" value="Małgorzata"/>
+                <column name="nazwisko" value="Kożuchowska"/>
+                <column name="nazwa_uzytkownika" value="mkozuchowska"/>
+                <column name="haslo" value="$2y$12$ByvVpAqyupTnms5TVBAvju3fHPuc8Wx6S/jAsQSULmFZRP5BUSb8u"/>
+            </insert>
+        </changeSet>
 
-<!--    <changeSet author="Damian" id="car_3">-->
-<!--        <insert tableName="samochod">-->
-<!--            <column name="marka" value="Mercedes"/>-->
-<!--            <column name="model" value="Klasa S"/>-->
-<!--            <column name="logo" value="assets/mercedesklasas.jpg"/>-->
-<!--            <column name="opis" value="Typu limuzyna"/>-->
-<!--            <column name="cena_za_dobe" value="12500"/>-->
-<!--            <column name="czy_wypozyczony" value="false"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="user_9">
+            <insert tableName="uzytkownik">
+                <column name="imie" value="Tomasz"/>
+                <column name="nazwisko" value="Karolak"/>
+                <column name="nazwa_uzytkownika" value="tkarolak"/>
+                <column name="haslo" value="$2y$12$WUPgP6hYPgPvb5z6Y.xap.jKkntphN0njJ9WNKaRrR5WOObHKWWni"/>
+            </insert>
+        </changeSet>
 
-<!--&lt;!&ndash;    Wypożyczenia samochodow&ndash;&gt;-->
-<!--    <changeSet author="Damian" id="renta_1">-->
-<!--        <insert tableName="samochod">-->
-<!--            <column name="iduzytkownika" value="2"/>-->
-<!--            <column name="idsamochodu" value="2"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+    <!--    Samochody-->
+        <changeSet author="Damian" id="car_1">
+            <insert tableName="samochod">
+                <column name="marka" value="BMW"/>
+                <column name="model" value="F30"/>
+                <column name="logo" value="assets/bmwseria1.jpg"/>
+                <column name="opis" value="Samochod klasy sredniej"/>
+                <column name="cena_za_dobe" value="3500"/>
+                <column name="czy_wypozyczony" value="false"/>
+            </insert>
+        </changeSet>
 
-<!--    <changeSet author="Damian" id="renta_2">-->
-<!--        <insert tableName="samochod">-->
-<!--            <column name="iduzytkownika" value="3"/>-->
-<!--            <column name="idsamochodu" value="3"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="car_2">
+            <insert tableName="samochod">
+                <column name="marka" value="Lamborghini"/>
+                <column name="model" value="huracan evo"/>
+                <column name="logo" value="assets/huracan.jpg"/>
+                <column name="opis" value="The Huracán EVO is the most successful V10 in Lamborghini history."/>
+                <column name="cena_za_dobe" value="54000"/>
+                <column name="czy_wypozyczony" value="false"/>
+            </insert>
+        </changeSet>
 
-<!--    <changeSet author="Damian" id="renta_3">-->
-<!--        <insert tableName="samochod">-->
-<!--            <column name="iduzytkownika" value="1"/>-->
-<!--            <column name="idsamochodu" value="1"/>-->
-<!--        </insert>-->
-<!--    </changeSet>-->
+        <changeSet author="Damian" id="car_3">
+            <insert tableName="samochod">
+                <column name="marka" value="Mercedes"/>
+                <column name="model" value="Klasa S"/>
+                <column name="logo" value="assets/mercedesklasas.jpg"/>
+                <column name="opis" value="Typu limuzyna"/>
+                <column name="cena_za_dobe" value="12500"/>
+                <column name="czy_wypozyczony" value="false"/>
+            </insert>
+        </changeSet>
+
+    <!--  Wypożyczenia samochodow -->
+<!--        <changeSet author="Damian" id="renta_1">-->
+<!--            <insert tableName="wypozyczenie">-->
+<!--                <column name="id_uzytkownika" value="2"/>-->
+<!--                <column name="id_samochodu" value="2"/>-->
+<!--            </insert>-->
+<!--        </changeSet>-->
+
+<!--        <changeSet author="Damian" id="renta_2">-->
+<!--            <insert tableName="wypozyczenie">-->
+<!--                <column name="id_uzytkownika" value="3"/>-->
+<!--                <column name="id_samochodu" value="3"/>-->
+<!--            </insert>-->
+<!--        </changeSet>-->
+
+<!--        <changeSet author="Damian" id="renta_3">-->
+<!--            <insert tableName="wypozyczenie">-->
+<!--                <column name="id_uzytkownika" value="1"/>-->
+<!--                <column name="id_samochodu" value="1"/>-->
+<!--            </insert>-->
+<!--        </changeSet>-->
+<!--    <changeSet author="Damian" id="renta_4">-->
+<!--            <insert tableName="wypozyczenie">-->
+<!--                <column name="id_uzytkownika" value="1"/>-->
+<!--                <column name="id_samochodu" value="2"/>-->
+<!--            </insert>-->
+<!--        </changeSet>-->
+<!--    <changeSet author="Damian" id="renta_5">-->
+<!--            <insert tableName="wypozyczenie">-->
+<!--                <column name="id_uzytkownika" value="1"/>-->
+<!--                <column name="id_samochodu" value="3"/>-->
+<!--            </insert>-->
+<!--        </changeSet>-->
 </databaseChangeLog>

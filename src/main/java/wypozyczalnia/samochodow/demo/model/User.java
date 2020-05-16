@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,8 +34,8 @@ public class User {
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany(mappedBy = "users")
-    private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
+    private List<Role> roles;
 
     public User(){
         // konstruktor na potrzeby hibernate

@@ -15,15 +15,15 @@ public class Rental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "idwypozyczenia")
+    @Column( name = "id_wypozyczenie")
     private int idRental;
 
     @NotNull(message = "Id samochodu nie moża być nullem")
-    @Column(name = "idsamochodu")
+    @Column(name = "id_samochodu")
     private Integer idCar;
 
     @NotNull(message = "Id uzytkownika nie moża być nullem")
-    @Column(name = "iduzytkownika")
+    @Column(name = "id_uzytkownika")
     private Integer idUser;
 
     public Rental(){

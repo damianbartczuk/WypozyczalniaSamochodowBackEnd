@@ -18,7 +18,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Samochod")
+    @Column(name = "id_samochodu")
     private int id;
 
     @NotEmpty(message = "Marka cannot me empty")

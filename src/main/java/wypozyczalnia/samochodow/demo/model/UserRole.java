@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,8 +30,8 @@ public class UserRole {
     @Column(name = "id_rola")
     private String idRola;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
-    private Set<User> users = new HashSet<>();
+    @ManyToMany( mappedBy = "roles")
+    private List<User> users = new ArrayList<>();
 
     public UserRole(){
         //        konstruktor na potrzeby hibernate
