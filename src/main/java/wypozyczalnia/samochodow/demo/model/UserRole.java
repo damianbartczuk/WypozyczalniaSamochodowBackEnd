@@ -22,8 +22,6 @@ public class UserRole {
     @Column(name = "id_uzytkownik_rola")
     private Long idUzytkownikRola;
 
-    @Column(name = "id_uzytkownik")
-    private String idUzytkownik;
 
     @Column(name = "id_rola")
     private String idRola;

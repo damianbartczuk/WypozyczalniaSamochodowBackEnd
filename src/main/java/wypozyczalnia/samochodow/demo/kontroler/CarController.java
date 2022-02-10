@@ -36,6 +36,7 @@ public class CarController {
         return new ResponseEntity<>(this.carService.zapiszSamochod(samochod), HttpStatus.OK);
     }
 
+    @Transactional
     @GetMapping(value = "/pobierz_samochody")
 //    @ApiOperation("Metoda zwraca liste samochodow które spełniają krytaria podane w parametrach")
     public ResponseEntity<List<Car>> pobierzSamochody(@RequestParam @Nullable Integer pageNumber, @RequestParam @Nullable Integer pageSize, @RequestParam @Nullable String token) {

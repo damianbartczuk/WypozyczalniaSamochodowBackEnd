@@ -6,6 +6,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity(name = "Rola")
@@ -36,7 +38,15 @@ public class Role{
     }
 
     @Override
-    public String toString() {
-        return "User = " + this.getNazwa();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return nazwa.equals(role.nazwa);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nazwa);
     }
 }

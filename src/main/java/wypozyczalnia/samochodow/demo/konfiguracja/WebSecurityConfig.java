@@ -56,9 +56,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf()
                 .disable()
-                .authorizeRequests().antMatchers("/authenticate").permitAll()
-                .antMatchers("/pobierz_uzytkownikow", "/save_rental", "pobierz_uzytkownika_za_pomoca_tokenu", "/pobierz_samochody")
-                .authenticated()
+                .authorizeRequests().antMatchers("/authenticate", "/pobierz_uzytkownikow", "/save_rental", "pobierz_uzytkownika_za_pomoca_tokenu", "/pobierz_samochody").permitAll()
+//                .antMatchers("/pobierz_uzytkownikow", "/save_rental", "pobierz_uzytkownika_za_pomoca_tokenu", "/pobierz_samochody")
+//                .authenticated()
                 .and()
 //                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 .exceptionHandling()

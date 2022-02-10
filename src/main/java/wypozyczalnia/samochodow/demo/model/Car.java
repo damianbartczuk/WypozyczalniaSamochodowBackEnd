@@ -18,7 +18,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Samochod")
+    @Column(name = "id_samochodu")
     private int id;
 
     @NotEmpty(message = "Marka cannot me empty")
@@ -29,7 +29,7 @@ public class Car {
     @Column(name = "model")
     private String model;
 
-    @NotEmpty(message = "Logo cannot be empty")
+//    @NotEmpty(message = "Logo cannot be empty")
     @Column(name = "logo")
     private String logo;
 
@@ -41,7 +41,7 @@ public class Car {
     @Column(name = "cena_za_dobe")
     private int cenaZaDobe;
 
-    @Value("${default.value.for.czyWypozyczony.field}")
+    @Value("${default.value.for.czyWypozyczony.field:false}")
     @Column(name = "czy_wypozyczony")
     private boolean czyWypozyczony;
 

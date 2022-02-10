@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import wypozyczalnia.samochodow.demo.dto.CarDto;
 import wypozyczalnia.samochodow.demo.model.Car;
 import wypozyczalnia.samochodow.demo.model.Rental;
 import wypozyczalnia.samochodow.demo.serwisy.RentalService;
@@ -28,7 +29,7 @@ public class RentalController {
     }
 
     @GetMapping( value = "/get_rental/{id}")
-    public ResponseEntity<List<Car>> getRentalForSpecificId(@PathVariable("id") Integer id){
+    public ResponseEntity<List<CarDto>> getRentalForSpecificId(@PathVariable("id") Integer id){
         return new ResponseEntity<>(this.rentalService.getCarBasedOnRental(id), HttpStatus.OK);
     }
 }
